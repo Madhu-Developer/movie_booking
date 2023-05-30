@@ -6,11 +6,12 @@ $signup = false;
 if(isset($_GET['uname']) && isset($_GET['phone']) && isset($_GET['email']) && isset($_GET['password'])){
     $uname= $_GET['uname'];
     $phone = $_GET['phone'];
-    $email=$_GET['email'];
+    $email= $_GET['email'];
     $password = $_GET['password'];
-    $error= User::insert_user($uname,$phone,$email,$password);
-    $signup = true;
-  
+    if(User::check_email($email)){
+        $error= User::insert_user($uname,$phone,$email,$password);
+        $signup = true;
+    }  
 }
 
 if($signup){
@@ -21,6 +22,7 @@ if($signup){
         header('location:hello.php');
     }
 }else{
+
     ?>
 <html>
 
@@ -111,6 +113,7 @@ if($signup){
 
 </body>
 <?php
+
 }
 ?>
 </html>

@@ -1,4 +1,16 @@
+<?php
+include_once($_SERVER['DOCUMENT_ROOT'].'/madhu/form/includes/classes/user.class.php');
 
+$login = false;
+
+if(isset($_GET['uname']) && isset($_GET['phone']) && isset($_GET['email']) && isset($_GET['password'])){
+    $uname= $_GET['uname'];
+    $password = $_GET['password'];
+    $error= User::insert_user($uname,$phone,$email,$password);
+    $login = true;
+  
+}
+?>
 <html>
 
 <head>
@@ -69,7 +81,7 @@
             </div>
             <div class="div1">
                 <div class="label"><label>Password</label></div>
-                <div class="input"><input type="password" name='uname' placeholder='password' required></div>
+                <div class="input"><input type="password" name='password' placeholder='password' required></div>
             </div>
             
             <input type="submit" value="Submit">

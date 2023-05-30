@@ -3,6 +3,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/madhu/form/includes/classes/database.cl
 
 class User{
     public static $insert_valid ;
+    public static $email_error=null;
     public  static function insert_user($uname,$phone,$email,$password){
             database::db_connect();
 
@@ -11,7 +12,7 @@ class User{
         try{
             $insert=database::$conn->prepare("INSERT INTO `signup`(`user_name`, `user_phone`, `user_email`, `user_password`) VALUES (?,?,?,?)");
             $insert->bindParam(1, $uname, PDO::PARAM_STR);
-            $insert->bindParam(2, $phone, PDO::PARAM_STR);
+            $insert->bindParam(2, $phone, PDO::PARAM_STR); 
             $insert->bindParam(3, $email, PDO::PARAM_STR);
             $insert->bindParam(4, $password, PDO::PARAM_STR);
             //$insert->bindparm('siss',$uname,$phone,$email,$password);
@@ -23,11 +24,12 @@ class User{
     }
 
     public static function check_email($email){
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $emailErr = "Invalid email ";
-            $email_error=false;
-            return $email_error;
-          }
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                return false;
+              }else{
+                return true;
+              }
+        
     }
 
 }

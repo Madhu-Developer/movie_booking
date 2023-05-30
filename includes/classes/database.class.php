@@ -9,10 +9,10 @@ class database
         $dbname='trail';
 
         try{
-            database::$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-            database::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo 'success';
-            return database::$conn;
+            return database::$conn=$conn;
 
             }
             catch(PDOException $e)
