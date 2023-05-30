@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/madhu/form/includes/classes/user.class.php');
+include_once(__DIR__.'/includes/user.class.php');
 
 $login = false;
 

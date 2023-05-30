@@ -1,5 +1,3 @@
 <?php
 
-echo '<pre>';
-var_dump(print_r($_SERVER));
-echo '</pre>';
+var_dump(file_exists(__DIR__.'/libs/includes/database.class.php'));

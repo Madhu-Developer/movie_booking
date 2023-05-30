@@ -1,9 +1,11 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/madhu/form/includes/classes/database.class.php');
+include_once('/var/www/html/madhu/form/libs/includes/database.class.php');
 
 class User{
     public static $insert_valid ;
-    public static $email_error=null;
+    public static $rows;
+
+
     public  static function insert_user($uname,$phone,$email,$password){
             database::db_connect();
 
@@ -32,4 +34,35 @@ class User{
         
     }
 
+    public static function getuserdata($email){
+        database::db_connect();
+        try{
+            $query_fetch= "select * from signup where user_email = ?'";
+            $fetch = database::$conn->query($query_fetch);
+            $fetch->bindValue($email);
+            $fetch->execute();
+            $rows = $fetch->fetchAll(PDO::FETCH_ASSOC);
+            print_r($rows);
+            echo '<table>';
+            echo '<tr>';
+            echo'<th> username <th>';
+            echo'<th> phone <th>';
+            echo'<th> email <th>';
+            echo '<tr>';
+
+            foreach($rows as $data ){
+                echo '<tr>';
+                echo '<td>'.$data['user_name'].'</td>';
+                echo '<td>'.$data['user_phone'].'</td>';
+                echo '<td>'.$data['user_email'].'</td>';
+                echo '<tr>';
+            }
+            echo '</table>';
+            
+        }catch(Exception $e){
+            echo'error message : '.$e->getMessage();
+        }
+        
+    }
 }
+

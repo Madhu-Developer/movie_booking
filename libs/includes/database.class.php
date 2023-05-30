@@ -1,4 +1,5 @@
 <?php
+
 class database
 {
     public static $conn;
@@ -11,7 +12,7 @@ class database
         try{
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo 'success';
+            
             return database::$conn=$conn;
 
             }
