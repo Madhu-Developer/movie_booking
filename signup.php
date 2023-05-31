@@ -110,22 +110,8 @@ if($signup){
 </body>
 
 <?php
+
 User::getuserdata($email);
-// echo '<table>';
-// echo '<tr>';
-// echo'<th> username <th>';
-// echo'<th> phone <th>';
-// echo'<th> email <th>';
-// echo '<tr>';
-// $fetchrow= User::getuserdata($email);
-// foreach($fetchrow as $data ){
-//     echo '<tr>';
-//     echo '<td>'.$data['user_name'].'</td>';
-//     echo '<td>'.$data['user_phone'].'</td>';
-//     echo '<td>'.$data['user_email'].'</td>';
-//     echo '<tr>';
-// }
-// echo '</table>';
 
     }
 }else{

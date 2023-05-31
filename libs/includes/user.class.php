@@ -37,12 +37,20 @@ class User{
     public static function getuserdata($email){
         database::db_connect();
         try{
-            $query_fetch= "select * from signup where user_email = ?'";
-            $fetch = database::$conn->query($query_fetch);
-            $fetch->bindValue($email);
-            $fetch->execute();
-            $rows = $fetch->fetchAll(PDO::FETCH_ASSOC);
-            print_r($rows);
+            $query_fetch = "SELECT * FROM signup";
+            //$query_fetch = "SELECT * FROM signup WHERE user_email = :email";
+$fetch = database::$conn->prepare($query_fetch);
+$fetch->bindValue(':email', $email);
+$fetch->execute();
+$rows = $fetch->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+            // $query_fetch = "SELECT * FROM signup WHERE user_email = :email";
+            // $fetch = database::$conn->query($query_fetch);
+            // $fetch->bindValue(':email',$email);
+            // $fetch->execute();
+            // $rows = $fetch->fetchAll(PDO::FETCH_ASSOC);
             echo '<table>';
             echo '<tr>';
             echo'<th> username <th>';
