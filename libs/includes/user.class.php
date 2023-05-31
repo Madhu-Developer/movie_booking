@@ -39,33 +39,16 @@ class User{
         try{
             $query_fetch = "SELECT * FROM signup";
             //$query_fetch = "SELECT * FROM signup WHERE user_email = :email";
-$fetch = database::$conn->prepare($query_fetch);
-$fetch->bindValue(':email', $email);
-$fetch->execute();
-$rows = $fetch->fetchAll(PDO::FETCH_ASSOC);
-
-
-
-            // $query_fetch = "SELECT * FROM signup WHERE user_email = :email";
+            $fetch = database::$conn->prepare($query_fetch);
+            $fetch->bindValue(':email', $email);
+            $fetch->execute();
+            User::$rows = $fetch->fetchAll(PDO::FETCH_ASSOC);
+            return User::$rows;
+             // $query_fetch = "SELECT * FROM signup WHERE user_email = :email";
             // $fetch = database::$conn->query($query_fetch);
             // $fetch->bindValue(':email',$email);
             // $fetch->execute();
             // $rows = $fetch->fetchAll(PDO::FETCH_ASSOC);
-            echo '<table>';
-            echo '<tr>';
-            echo'<th> username <th>';
-            echo'<th> phone <th>';
-            echo'<th> email <th>';
-            echo '<tr>';
-
-            foreach($rows as $data ){
-                echo '<tr>';
-                echo '<td>'.$data['user_name'].'</td>';
-                echo '<td>'.$data['user_phone'].'</td>';
-                echo '<td>'.$data['user_email'].'</td>';
-                echo '<tr>';
-            }
-            echo '</table>';
             
         }catch(Exception $e){
             echo'error message : '.$e->getMessage();

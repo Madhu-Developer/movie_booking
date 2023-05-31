@@ -113,6 +113,21 @@ if($signup){
 
 User::getuserdata($email);
 
+echo '<table>';
+            echo '<tr>';
+            echo'<th> username <th>';
+            echo'<th> phone <th>';
+            echo'<th> email <th>';
+            echo '<tr>';
+
+            foreach(User::$rows as $data ){
+                echo '<tr>';
+                echo '<td>'.$data['user_name'].'</td>';
+                echo '<td>'.$data['user_phone'].'</td>';
+                echo '<td>'.$data['user_email'].'</td>';
+                echo '<tr>';
+            }
+            echo '</table>';
     }
 }else{
     ?>
