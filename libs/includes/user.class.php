@@ -1,5 +1,6 @@
 <?php
-include_once('/var/www/html/madhu/form/libs/includes/database.class.php');
+
+include_once __DIR__.'/database.class.php';
 
 class User{
     public static $insert_valid ;
@@ -37,10 +38,10 @@ class User{
     public static function getuserdata($email){
         database::db_connect();
         try{
-            $query_fetch = "SELECT * FROM signup";
+            $query_fetch = "SELECT user_name,user_phone,user_email FROM signup order by user_id desc";
             //$query_fetch = "SELECT * FROM signup WHERE user_email = :email";
             $fetch = database::$conn->prepare($query_fetch);
-            $fetch->bindValue(':email', $email);
+            // $fetch->bindValue(':email', $email);
             $fetch->execute();
             User::$rows = $fetch->fetchAll(PDO::FETCH_ASSOC);
             return User::$rows;
