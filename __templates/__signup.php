@@ -88,7 +88,7 @@
             <div class="div1">
                 <div class="label"><label>Phone</label></div>
                 <div class="input"><input type="tel" name='phone' placeholder='Phone-no' required></div>
-            </div>function load_Template($name)
+            </div>
             <div class="div1">
                 <div class="label"><label>Email</label></div>
                 <div class="input"><input type="email" name='email' placeholder='Email' required></div>

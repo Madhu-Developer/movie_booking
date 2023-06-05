@@ -1,8 +1,13 @@
 <?php
+
+
 // var_dump(file_exists('libs/includes/user.class.php'));
 include (__DIR__.'/libs/load.php');
 include_once('libs/includes/user.class.php');
 include_once 'libs/includes/database.class.php';
+
+
+
 
 include_once(__DIR__.'/libs/includes/user.class.php');
 $signup = false;

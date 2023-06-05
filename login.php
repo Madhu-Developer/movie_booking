@@ -1,6 +1,8 @@
 <?php
 include_once(__DIR__.'/includes/user.class.php');
 
+
+
 $login = false;
 
 if(isset($_GET['uname']) && isset($_GET['phone']) && isset($_GET['email']) && isset($_GET['password'])){
