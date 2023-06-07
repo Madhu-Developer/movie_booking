@@ -1,12 +1,15 @@
 <?php
 include_once '/var/www/html/madhu/form/libs/includes/database.class.php';
+$uname = $_POST['uname'];
+$phone = $_POST['phone'];
+$email = $_POST['email'];
+$pass = $_POST['pass'];
 
-if($requestmode==='GET') {
+$requestmode = $_SERVER['REQUEST_METHOD'];
 
-$uname = $_GET['uname'];
-$phone = $_GET['phone'];
-$email = $_GET['email'];
-$pass = $_GET['pass'];
+if($requestmode=='POST') {
+
+
 
 database::db_connect();
 

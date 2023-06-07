@@ -21,9 +21,7 @@ class database
                 echo "error message : ".$e->getMessage();
             }
     } 
-    public static function closeConnection() {
-        self::$conn = null;
-    }
+  
 }
 
 
