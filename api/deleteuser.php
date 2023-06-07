@@ -1,40 +1,31 @@
 <?php
 include_once '/var/www/html/madhu/form/libs/includes/database.class.php';
 
-$email = $_GET['email'];
-
-
 database::db_connect();
 
-try{
-    $delete=database::$conn->prepare("DELETE FROM `signup` WHERE `user_email`=?");
-    $delete->bindParam(1, $email, PDO::PARAM_STR);
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     
+
+$email = $_GET['email'];
+
+$update=database::$conn->prepare("DELETE FROM `signup` WHERE `user_email`=?");
+
+$update->bindParam(1, $email, PDO::PARAM_STR);
+
+$result=$update->execute();
+
+if ($result) {
     
-    //$insert->bindparm('siss',$uname,$phone,$email,$password);
-    if($delete->execute()){
-        $result = array(
-            'message'=>'delete success'
-            
-        );
-        http_response_code(200);
-        $json = json_encode($result,JSON_PRETTY_PRINT);
-    }else{
-        $result = array(
-            'message'=>'delete failed'
-        
-        );
-        http_response_code(500);
-        $json = json_encode($result,JSON_PRETTY_PRINT);
-    }
-    
-}catch(exception $e){
-    http_response_code(500);
-    echo 'error message is '.$e->getMessage();
+    echo "row deleted  successfully.";
+} else {
+    echo "Error in deleting data: " . mysqli_error($conn);
+}
+} else {
+    // Handle other HTTP methods or display an error message
+    echo "Invalid request method.";
 }
 
 
-
-echo '<pre>'.$json.'</pre>';
+mysqli_close($conn);
 
 ?>
